@@ -14,4 +14,3 @@ application = create_app(config)
 http_server = HTTPServer(application, xheaders=True)
 http_server.listen(WEB_PORT)
 IOLoop.instance().start()
-

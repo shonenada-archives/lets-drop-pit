@@ -1,11 +1,8 @@
-from tornado.web import RequestHandler, Application, URLSpec
+from tornado.web import Application, URLSpec
 
+from pit.extensions import db
 from pit.settings import app_settings as configuration
-
-
-class MainHandler(RequestHandler):
-    def get(self):
-        self.render('index.html')
+from pit.views.master import IndexHandler
 
 
 def create_app(config={}):
@@ -13,9 +10,11 @@ def create_app(config={}):
     configuration.update(config)
 
     url_list = [
-        URLSpec(r'/', MainHandler, name='index'),
+        URLSpec(r'/', IndexHandler, name='index'),
     ]
 
     application = Application(url_list, **configuration)
+
+    db.init_app(application)
 
     return application
