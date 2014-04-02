@@ -1,0 +1,22 @@
+{
+  "name": "lets-drop-pit",
+  "version": "0.1",
+  "homepage": "https://github.com/shonenada/lets-drop-pit",
+  "authors": [
+    "shonenada <shonenada@gmail.com>"
+  ],
+  "description": "Let's Drop into Pits",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "pit/statics/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootflat": "*",
+    "jquery": "~2.1.0"
+  }
+}
