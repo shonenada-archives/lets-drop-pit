@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship, backref
 from pit.extensions import db
 
 
-class User(db.base):
+class User(db.Model):
 
     __tablename__ = 'user'
 
@@ -17,10 +17,10 @@ class User(db.base):
     email = Column(String(50))
     created = Column(DateTime, default=datetime.utcnow)
     pits = relationship('Pit', backref='author')
-    replys = relationship('Pit', backref='author')
+    replys = relationship('Reply', backref='author')
 
 
-class Topic(db.base):
+class Topic(db.Model):
     
     __tablename__ = 'topic'
 
@@ -29,7 +29,7 @@ class Topic(db.base):
     pits = relationship('Pit', backref='topic')
 
 
-class Pit(db.base):
+class Pit(db.Model):
 
     __tablename__ = 'pit'
 
@@ -42,7 +42,7 @@ class Pit(db.base):
     created = Column(DateTime, default=datetime.utcnow)
 
 
-class Reply(db.base):
+class Reply(db.Model):
 
     __tablename__ = 'reply'
 

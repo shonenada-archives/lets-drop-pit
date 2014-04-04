@@ -1,17 +1,13 @@
-from tornado.web import Application, URLSpec
+from tornado.web import Application
 
 from pit.extensions import db
 from pit.settings import app_settings as configuration
-from pit.views.master import IndexHandler
+from pit.routes import url_list
 
 
 def create_app(config={}):
 
     configuration.update(config)
-
-    url_list = [
-        URLSpec(r'/', IndexHandler, name='index'),
-    ]
 
     application = Application(url_list, **configuration)
 
