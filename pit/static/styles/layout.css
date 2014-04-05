@@ -105,28 +105,26 @@ a {
 
 /*
  * -- EMAIL STYLES --
- * Styles relevant to the email messages, labels, counts, and more.
+ * Styles relevant to the email messages, topics, counts, and more.
  */
 .email-count {
     color: rgb(75, 113, 151);
 }
 
-.email-label-personal,
-.email-label-work,
-.email-label-travel {
+.email-topic {
     width: 15px;
     height: 15px;
     display: inline-block;
     margin-right: 0.5em;
     border-radius: 3px;
 }
-.email-label-personal {
+.email-topic-yellow {
     background: #ffc94c;
 }
-.email-label-work {
+.email-topic-cyan {
     background: #41ccb4;
 }
-.email-label-travel {
+.email-topic-green {
     background: #40c365;
 }
 
@@ -139,6 +137,7 @@ a {
 }
 .email-item:hover {
     background: #eee;
+    cursor: pointer;
 }
 
 .email-avatar {
@@ -217,7 +216,7 @@ a {
     }
     #nav {
         margin-left:-500px; /* "left col (nav + list)" width */
-        width:150px;
+        width:170px;
         height: 100%;
     }
 

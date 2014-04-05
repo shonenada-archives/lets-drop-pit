@@ -21,22 +21,24 @@
     <a href="#" class="nav-menu-button">Menu</a>
 
     <div class="nav-inner">
-      <button class="primary-button pure-button">Lets Drop Pits</button>
+      <button class="primary-button pure-button">Let's Drop Pits</button>
 
       <div class="pure-menu pure-menu-open">
         <ul>
           {% block menu %}
-          <li><a href="#">Inbox <span class="email-count">(2)</span></a></li>
-          <li><a href="#">Important</a></li>
-          <li><a href="#">Sent</a></li>
-          <li><a href="#">Drafts</a></li>
-          <li><a href="#">Trash</a></li>
+          <li><a href="#">Post</a></li>
+          <li><a href="#">Explore</a></li>
+          <li><a href="#">Mine</a></li>
+          <li><a href="#">Favourites <span class="email-count">(2)</span></a></li>
+          <li><a href="#">SignOut</a></li>
           {% end %}
-          <li class="pure-menu-heading">Labels</li>
-          {% block label %}
-          <li><a href="#"><span class="email-label-personal"></span>Personal</a></li>
-          <li><a href="#"><span class="email-label-work"></span>Work</a></li>
-          <li><a href="#"><span class="email-label-travel"></span>Travel</a></li>
+          {% block topic %}
+          {% if topics %}
+          <li class="pure-menu-heading">Topic</li>
+          {% for t in topics %}
+          <li><a href="#"><span class="email-topic email-topic-cyan"></span>{{ t.name }}</a></li>
+          {% end %}
+          {% end %}
           {% end %}
         </ul>
       </div>
