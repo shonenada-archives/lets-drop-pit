@@ -1,8 +1,7 @@
-from tornado.web import RequestHandler
+from pit.views.base import View
 
 
-class IndexView(RequestHandler):
+class IndexView(View):
 
     def get(self):
-        
         return self.render('index.html')

@@ -1,10 +1,12 @@
-from tornado.web import RequestHandler
+from pit.views.base import View
+from pit.models import Pit, Topic
 
-from pit.models import Pit
 
-
-class ArticleView(RequestHandler):
+class ArticleView(View):
 
     def get(self):
-        print Pit.query.first()
-        return self.render('article/pits.html')
+        pits = Pit.query.all()
+        pit = Pit.query.first()
+        topics = Topic.query.all()
+        return self.render(
+            'article/pits.html', pits=pits, pit=pit, topics=topics)
