@@ -13,7 +13,7 @@ class _QueryProperty(object):
         try:
             mapper = class_mapper(type)
             if mapper:
-                return type.query_class(mapper, session=self.sa.session())
+                return type.query_class(mapper, session=self.sa.session)
         except UnmappedClassError:
             return None
 
@@ -39,7 +39,7 @@ class Database(object):
         self.app = app
         self.app.settings.setdefault('sqlalchemy_uri', 'sqlite:///:memory:')
         self.engine = create_engine(self.app.settings.get('sqlalchemy_uri'))
-        self.session = sessionmaker(bind=self.engine)
+        self.session = sessionmaker(bind=self.engine)()
 
     def create_all(self):
         self.Model.metadata.create_all(self.engine)

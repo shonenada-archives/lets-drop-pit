@@ -1,4 +1,5 @@
 from datetime import datetime
+from hashlib import sha256
 
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship, backref
@@ -27,6 +28,14 @@ class User(db.Model):
     pits = relationship('Pit', backref='author')
     replys = relationship('Reply', backref='author')
     role_id = Column(Integer, ForeignKey('role.id'))
+
+    def set_password(self, raw_pwd):
+        self.password = self.__hash_password(raw_pwd)
+
+    def __hash_password(self, raw_pwd):
+        salt = db.app.settings.get('salt', 'SALT')
+        hash_str = "%s|%s|%s" % (salt, raw_pwd, salt)
+        return sha256(hash_str).hexdigest()
 
 
 class Topic(db.Model):

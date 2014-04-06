@@ -1,27 +1,44 @@
-body {
-}
-
-.main{
+.wrapper{
     color: #FFF;
     text-align: center;
-    font-size: 48px;
     width: 100%;
-    padding-top: 200px; 
-    padding-bottom: 200px; 
+    height: 200px;
+    padding: 150px 0px 280px 0;
     background: #1F8DD6;
+    overflow: hidden;
 }
 
-.main a {
+#main {
+    float: left;
+    width: 100%;
+    font-size: 48px;
+}
+
+#main a {
     color: #FFF;
 }
 
-.main .button {
-    font-size: 24px;
+#main .button {
+    font-size: 20px;
     display: inline-block;
     border-radius: 5px;
-    padding: 5px 25px;
+    padding: 10px 35px;
     margin: 0 10px;
     background: #FFF;
     color: #1F8DD6;
     text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    float: left;
+    margin-left: -200px;
+}
+
+.container legend {
+    font-size: 24px;
+    color: #FFF;
 }

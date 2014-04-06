@@ -6,35 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ static_url('styles/plugins/pure-min.css') }}">
   <link rel="stylesheet" href="{{ static_url('styles/index.css') }}">
+  <script src="{{ static_url('components/jquery/dist/jquery.js') }}"></script>
+  <script src="{{ static_url('components/jquery-form/jquery.form.js') }}"></script>
 </head>
 <body>
-  <div class="main">
-    Let's Drop <a href="{{ reverse_url('article_list') }}">Pits</a> - -|||
-    <br />
-    <a href="#" class="button">Sign In</a><span class="sep"></span><a class="button" href="#">Sign Up</a>
+
+  <div class="wrapper">
+
+    <div id="main" class="main-no-hover">
+      <p>Let's Drop <a href="{{ reverse_url('article_list') }}">Pits</a> - -|||</p>
+      <a href="javascript:void(0);" class="button" id="sign-in-btn">Sign In</a>
+      <a href="javascript:void(0);" class="button" id="sign-up-btn">Sign Up</a>
+    </div>
+
+    <div id="sign-up-container" class="hidden container">
+      <form action="{{ reverse_url('account_sign_up') }}" class="pure-form pure-form-aligned" method="post" id="sign-up-form">
+        {% module xsrf_form_html() %}
+        <fieldset>
+          <legend>Sign Up</legend>
+
+          <div class='pure-control-group'>
+            <label for="sign-up-">Email</label>
+            <input id="sign-up-email" type="email" placeholder="Email" class="puer-input-1-2" name="email">
+          </div>
+
+          <div class='pure-control-group'>
+            <label for="sign-up-password">Password</label>
+            <input id="sign-up-password" type="password" placeholder="Password" name="password">
+          </div>
+
+          <div class='pure-control-group'>
+            <label for="sign-up-nickname">Nickname</label>
+            <input id="sign-up-nickname" type="text" placeholder="Nickname" name="nickname">
+          </div>
+
+          <button type="submit" class="pure-button pure-button">Sign Up</button>
+          <a type="button" class="pure-button pure-button cancel-btn">Cancel</a>
+        </fieldset>
+      </form>
+    </div>
+
+    <div id="sign-in-container" class="hidden container">
+      <form action="{{ reverse_url('account_sign_in') }}" class="pure-form pure-form-aligned" method="post" id="sign-in-form">
+        {% module xsrf_form_html() %}
+        <fieldset>
+          <legend>Sign In</legend>
+
+          <div class='pure-control-group'>
+            <label for="sign-in-email">Email</label>
+            <input id="sign-in-email" type="email" placeholder="Email" class="puer-input-1-2" name="email">
+          </div>
+
+          <div class='pure-control-group'>
+            <label for="sign-in-password">Password</label>
+            <input id="sign-in-password" type="password" placeholder="Password" name="password">
+          </div>
+
+          <button type="submit" class="pure-button pure-button">Sign In</button>
+          <a type="button" class="pure-button pure-button cancel-btn">Cancel</a>
+        </fieldset>
+      </form>
+    </div>
+
   </div>
 
-  <div id="sign-up-container" class="hidden">
-    <form action="#" class="pure-form pure-form-stacked">
-      <fieldset>
-        <legend>Basic Information</legend>
 
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Email">
+  <script>
+  $(function (){
+    $('#sign-up-btn').click(function() {
+      $('#sign-in-container').fadeOut(250);
+      $('#main').animate({'width': '60%'}, 400, function() {
+        $('#sign-up-container').fadeIn();
+      });
+    });
+    $('#sign-in-btn').click(function() {
+      $('#sign-up-container').fadeOut(250);
+      $('#main').animate({'width': '60%'},  400, function() {
+        $('#sign-in-container').fadeIn();
+      });
+    });
+    $('.cancel-btn').click(function() {
+      $('#sign-up-container').fadeOut(250);
+      $('#sign-in-container').fadeOut(250);
+      $('#main').delay(250).animate({'width': '100%'}, 400);
+    });
+    $('#sign-up-form').ajaxForm(function (){
 
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Password">
-
-        <label for="nickname">Nickname</label>
-        <input id="nickname" type="text" placeholder="Nickname">
-
-        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-      </fieldset>
-    </form>
-  </div>
-
-  <div id="sign-in-container">
-
-  </div>
+    });
+  });
+  </script>
 </body>
 </html>
