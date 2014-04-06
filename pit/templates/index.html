@@ -4,6 +4,7 @@
   <title>Let's Drop Pits</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ static_url('styles/plugins/pure-min.css') }}">
   <link rel="stylesheet" href="{{ static_url('styles/index.css') }}">
 </head>
 <body>
@@ -11,6 +12,29 @@
     Let's Drop <a href="{{ reverse_url('article_list') }}">Pits</a> - -|||
     <br />
     <a href="#" class="button">Sign In</a><span class="sep"></span><a class="button" href="#">Sign Up</a>
+  </div>
+
+  <div id="sign-up-container" class="hidden">
+    <form action="#" class="pure-form pure-form-stacked">
+      <fieldset>
+        <legend>Basic Information</legend>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Email">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Password">
+
+        <label for="nickname">Nickname</label>
+        <input id="nickname" type="text" placeholder="Nickname">
+
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <div id="sign-in-container">
+
   </div>
 </body>
 </html>

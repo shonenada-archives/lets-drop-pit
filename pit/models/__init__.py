@@ -20,10 +20,9 @@ class User(db.Model):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
-    username = Column(String(30), nullable=False)
+    email = Column(String(50), nullable=False)
     password = Column(String(62), nullable=False)
-    nickname = Column(String(30))
-    email = Column(String(50))
+    nickname = Column(String(30), nullable=False)
     created = Column(DateTime, default=datetime.utcnow)
     pits = relationship('Pit', backref='author')
     replys = relationship('Reply', backref='author')

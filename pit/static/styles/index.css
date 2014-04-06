@@ -1,22 +1,14 @@
 body {
-    background: #1F8DD6;
-}
-
-a {
-    text-decoration: none;
 }
 
 .main{
-    position: absolute;
-    width: 700px;
-    height: 200px;
-    top: 50%;
-    left: 50%;
-    margin-left: -350px;
-    margin-top: -100px;
     color: #FFF;
     text-align: center;
     font-size: 48px;
+    width: 100%;
+    padding-top: 200px; 
+    padding-bottom: 200px; 
+    background: #1F8DD6;
 }
 
 .main a {
@@ -27,12 +19,9 @@ a {
     font-size: 24px;
     display: inline-block;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 25px;
     margin: 0 10px;
-    background: #EAEAEA;
-    color: #1F8DD6;
-}
-
-.main .button:hover {
     background: #FFF;
+    color: #1F8DD6;
+    text-decoration: none;
 }
