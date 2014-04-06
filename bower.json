@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.1.1",
-    "reset-css": "*"
+    "reset-css": "*",
+    "jquery-form": "3.46.0"
   }
 }
