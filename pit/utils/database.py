@@ -43,3 +43,6 @@ class Database(object):
 
     def create_all(self):
         self.Model.metadata.create_all(self.engine)
+
+    def drop_all(self):
+        self.Model.metadata.drop_all(self.engine)

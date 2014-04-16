@@ -17,6 +17,7 @@ body {
     width: 100%;
     margin: 0 auto;
     font-size: 48px;
+    margin-right: 20px;
 }
 
 #main a {
@@ -41,4 +42,13 @@ body {
 .container legend {
     font-size: 24px;
     color: #FFF;
+}
+
+.container label {
+    width: 5em!important;
+}
+
+.form-tips {
+    display: inline-block;
+    font-size: 12px;
 }

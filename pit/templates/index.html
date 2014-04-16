@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ static_url('styles/plugins/pure-min.css') }}">
   <link rel="stylesheet" href="{{ static_url('styles/index.css') }}">
+  <link rel="stylesheet" href="{{ static_url('styles/flash-message.css') }}">
   <script src="{{ static_url('components/jquery/dist/jquery.js') }}"></script>
   <script src="{{ static_url('components/jquery-form/jquery.form.js') }}"></script>
+  <script src="{{ static_url('scripts/global.js') }}"></script>
 </head>
 <body>
+  <div id="flash-messages-container" class="message-box-fixed">
+  </div>
   <div class="wrapper">
 
     <div id="main" class="main-no-hover">
@@ -27,16 +31,25 @@
           <div class='pure-control-group'>
             <label for="sign-up-">Email</label>
             <input id="sign-up-email" type="email" placeholder="Email" class="puer-input-1-2" name="email">
+            <span id="tips-email" class="form-tips"></span>
           </div>
 
           <div class='pure-control-group'>
             <label for="sign-up-password">Password</label>
             <input id="sign-up-password" type="password" placeholder="Password" name="password">
+            <span id="tips-password" class="form-tips"></span>
+          </div>
+
+          <div class='pure-control-group'>
+            <label for="sign-up-password">Confirm Password</label>
+            <input id="sign-up-password" type="password" placeholder="Password" name="confirm_password">
+            <span id="tips-confirm_password" class="form-tips"></span>
           </div>
 
           <div class='pure-control-group'>
             <label for="sign-up-nickname">Nickname</label>
             <input id="sign-up-nickname" type="text" placeholder="Nickname" name="nickname">
+            <span id="tips-nickname" class="form-tips"></span>
           </div>
 
           <button type="submit" class="pure-button pure-button">Sign Up</button>
@@ -72,6 +85,7 @@
 
   <script>
   $(function (){
+    $('.form-tips').hide();
     $('#sign-up-btn').click(function() {
       $('#sign-in-container').fadeOut(250);
       $('#main').animate({'width': '60%'}, 400, function() {
@@ -89,8 +103,22 @@
       $('#sign-in-container').fadeOut(250);
       $('#main').delay(250).animate({'width': '100%'}, 400);
     });
-    $('#sign-up-form').ajaxForm(function (){
-      
+    $('#sign-up-form').ajaxForm({
+      dataType:'json',
+      success: function (res) {
+        if (res.success) {
+          $('sign-in-btn').click();
+        }
+        else {
+          $('.form-tips').hide();
+          for (key in res.messages) {
+            $('#tips-' + key).html(res.messages[key]).slideDown();
+          }
+        }
+      },
+    });
+    $('#sign-in-form').ajaxForm({
+      dataType:'json',
     });
   });
   </script>
