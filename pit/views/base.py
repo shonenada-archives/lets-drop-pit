@@ -9,8 +9,7 @@ class View(RequestHandler):
     def prepare(self):
         rbac.auth(self)
     
-    @property
-    def current_user(self):
+    def get_current_user(self):
         user_id = self.get_secure_cookie('user_id')
         if not user_id:
             return None

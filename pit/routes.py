@@ -12,4 +12,3 @@ url_list = [
     URLSpec(r'/account/signin', SignInView, name='account_sign_in'),
     URLSpec(r'/article/list', ArticleView, name='article_list'),
 ]
- 
