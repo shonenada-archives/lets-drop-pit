@@ -1,11 +1,12 @@
+from pit.views.master import IndexView
+
+
 allowed = [
-    (None, 'GET', '/'),
 ]
 
 denied = [
 
 ]
-
 
 permission = {
     'allowed': allowed,
