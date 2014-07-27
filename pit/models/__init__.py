@@ -30,16 +30,17 @@ class User(db.Model):
     role_id = Column(Integer, ForeignKey('role.id'))
 
     def set_password(self, raw_pwd):
-        self.password = self.__hash_password(raw_pwd)
+        self.password = User.hash_password(raw_pwd)
 
-    def __hash_password(self, raw_pwd):
+    @staticmethod
+    def hash_password(self, raw_pwd):
         salt = db.app.settings.get('salt', 'SALT')
         hash_str = "%s|%s|%s" % (salt, raw_pwd, salt)
         return sha256(hash_str).hexdigest()
 
 
 class Topic(db.Model):
-    
+
     __tablename__ = 'topic'
 
     id = Column(Integer, primary_key=True)
