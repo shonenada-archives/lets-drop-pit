@@ -10,26 +10,19 @@ class RBAC(object):
         self.allowed = set()
         self.denied = set()
 
-    def record(self, operation, role_name):
-        assert operation in ('allow', 'deny')
-
-        def decorator(method_func):
-            def wrapper(cls, *arg, **kwargs):
-                view = cls.__class__
-                method = method_func.__name__.upper()
-                if operation == 'allow':
-                    self.allowed.add((role_name, method, view))
-                elif operation == 'deny':
-                    self.denied.add((role_name, method, view))
-                return method_func(cls, *arg, **kwargs)
-            return wrapper
+    def allow(self, role_name, method):
+        def decorator(view):
+            _method = method.upper()
+            self.allowed.add((role_name, _method, view))
+            return view
         return decorator
 
-    def allow(self, role_name):
-        return self.record('allow', derole_name)
-
-    def deny(self, role_name):
-        return self.record('deny', role_name)
+    def deny(self, role_name, method):
+        def decorator(view):
+            _method = method.upper()
+            self.denied.add((role_name, _method, view))
+            return view
+        return decorator
 
     def init_app(self, app):
         self.app = app
