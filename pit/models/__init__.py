@@ -33,7 +33,7 @@ class User(db.Model):
         self.password = User.hash_password(raw_pwd)
 
     @staticmethod
-    def hash_password(self, raw_pwd):
+    def hash_password(raw_pwd):
         salt = db.app.settings.get('salt', 'SALT')
         hash_str = "%s|%s|%s" % (salt, raw_pwd, salt)
         return sha256(hash_str).hexdigest()

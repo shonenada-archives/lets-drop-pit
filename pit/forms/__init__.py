@@ -1,5 +1,6 @@
 from wtforms import StringField
 from wtforms.validators import Email, InputRequired, Length, EqualTo
+from wtforms.validators import ValidationError
 from wtforms_tornado import Form
 
 from pit.services.user import check_email_exist

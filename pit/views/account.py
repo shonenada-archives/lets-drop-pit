@@ -3,8 +3,10 @@ from pit.app import db
 from pit.models import User
 from pit.forms import SignUpForm, SignInForm
 from pit.services.user import authenticate
+from pit.extensions import rbac
 
 
+@rbac.allow(None, 'POST')
 class SignUpView(View):
 
     def post(self):
@@ -22,6 +24,7 @@ class SignUpView(View):
                            'message': 'Register Successfully.'})
 
 
+@rbac.allow(None, 'POST')
 class SignInView(View):
 
     def post(self):
